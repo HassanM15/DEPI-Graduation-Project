@@ -1,0 +1,17 @@
+.container {
+  background: linear-gradient(135deg, #4e73df, #8e2de2);
+  min-height: 100vh;
+}
+
+.card {
+  border: none;
+  border-radius: 10px;
+}
+
+.btn-primary {
+  transition: background-color 0.2s;
+}
+
+.btn-primary:disabled {
+  background-color: #6c757d;
+}

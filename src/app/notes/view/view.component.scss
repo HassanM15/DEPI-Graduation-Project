@@ -1,0 +1,27 @@
+.container {
+  background: linear-gradient(135deg, #4e73df, #8e2de2);
+}
+
+.card {
+  border: none;
+  border-radius: 10px;
+}
+
+.btn-outline-primary, .btn-outline-secondary {
+  transition: background-color 0.2s;
+}
+
+.card-body {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,102 @@
+<div
+    class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card p-4 shadow" style="max-width: 400px; width: 100%;">
+        <h2 class="card-title text-center mb-4">Register</h2>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input
+                    id="name"
+                    formControlName="name"
+                    type="text"
+                    class="form-control"
+                    [ngClass]="{'is-invalid': registerForm.get('name')?.invalid && registerForm.get('name')?.touched}">
+                <div
+                    *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched"
+                    class="invalid-feedback">
+                    Name is required.
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input
+                    id="email"
+                    formControlName="email"
+                    type="email"
+                    class="form-control"
+                    [ngClass]="{'is-invalid': registerForm.get('email')?.invalid && registerForm.get('email')?.touched}">
+                <div
+                    *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched"
+                    class="invalid-feedback">
+                    Valid email is required.
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input
+                    id="password"
+                    formControlName="password"
+                    type="password"
+                    class="form-control"
+                    [ngClass]="{'is-invalid': registerForm.get('password')?.invalid && registerForm.get('password')?.touched}">
+                <div
+                    *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
+                    class="invalid-feedback">
+                    Password must be at least 6 characters.
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="phone" class="form-label">Phone</label>
+                <input
+                    id="phone"
+                    formControlName="phone"
+                    type="text"
+                    class="form-control"
+                    [ngClass]="{'is-invalid': registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched}">
+                <div
+                    *ngIf="registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched"
+                    class="invalid-feedback">
+                    Phone is required.
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="age" class="form-label">Age</label>
+                <input
+                    id="age"
+                    formControlName="age"
+                    type="number"
+                    class="form-control"
+                    [ngClass]="{'is-invalid': registerForm.get('age')?.invalid && registerForm.get('age')?.touched}">
+                <div
+                    *ngIf="registerForm.get('age')?.invalid && registerForm.get('age')?.touched"
+                    class="invalid-feedback">
+                    Age must be 18 or older.
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="address" class="form-label">Address</label>
+                <input
+                    id="address"
+                    formControlName="address"
+                    type="text"
+                    class="form-control"
+                    [ngClass]="{'is-invalid': registerForm.get('address')?.invalid && registerForm.get('address')?.touched}">
+                <div
+                    *ngIf="registerForm.get('address')?.invalid && registerForm.get('address')?.touched"
+                    class="invalid-feedback">
+                    Address is required.
+                </div>
+            </div>
+            <button
+                type="submit"
+                [disabled]="registerForm.invalid"
+                class="btn btn-primary w-100">
+                Register
+            </button>
+        </form>
+        <p class="text-center mt-3">
+            Already have an account? <a routerLink="/login"
+                class="text-primary">Login</a>
+        </p>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 87%;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.15); /* Glassmorphism */
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  padding: 10px 20px;
+}
+
+.container-fluid {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.navbar-brand, .nav-link {
+  color: #fff !important;
+  transition: color 0.3s, transform 0.2s;
+}
+
+.navbar-brand:hover, .nav-link:hover {
+  color: #ddd !important;
+  transform: scale(1.05);
+}
+
+.nav-link.active {
+  font-weight: bold;
+  border-bottom: 2px solid #fff;
+}
+
+.btn-outline-light {
+  border-color: black;
+  color: black;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-outline-light:hover {
+  background-color: #6c757d;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+.navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.75)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}

@@ -1,0 +1,36 @@
+<div class="container-fluid min-vh-100 py-5 d-flex align-items-center justify-content-center">
+  <div class="card shadow-sm p-4 note-view">
+    <h2 class="text-center mb-4">View Note</h2>
+
+    <div *ngIf="loading" class="text-center">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <p>Loading note...</p>
+    </div>
+
+    <div *ngIf="errorMessage && !loading" class="alert alert-danger" role="alert">
+      {{ errorMessage }}
+      <a routerLink="/notes" class="alert-link ms-2">Back to Notes</a>
+      <div *ngIf="debugInfo.length" class="mt-2">
+        <small>Debug Info:</small>
+        <ul>
+          <li *ngFor="let info of debugInfo">{{ info }}</li>
+        </ul>
+      </div>
+    </div>
+
+    <div *ngIf="note && !loading && !errorMessage" class="note-content">
+      <h3 class="card-title">{{ note.title }}</h3>
+      <p class="card-text">{{ note.content }}</p>
+      <p class="text-muted">Category: {{ note.category }}</p>
+      <p class="text-muted">Priority: {{ note.priority }}</p>
+      <p class="text-muted">Tags: {{ note.tagsFormatted }}</p>
+      <p class="text-muted">Created by: {{ note.email }}</p>
+      <div class="d-flex justify-content-between mt-4">
+        <a routerLink="/notes" class="btn btn-outline-primary">Back to Notes</a>
+        <a [routerLink]="['/notes/update', note.id]" class="btn btn-outline-secondary">Edit Note</a>
+      </div>
+    </div>
+  </div>
+</div>

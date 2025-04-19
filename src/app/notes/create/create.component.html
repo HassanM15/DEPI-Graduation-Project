@@ -1,0 +1,112 @@
+<div class="container min-vh-100 py-5">
+  <div class="card mx-auto shadow" style="max-width: 600px; width: 100%">
+    <div class="card-header">
+      <h2 class="card-title mb-0">Create Note</h2>
+    </div>
+
+    <div class="card-body">
+      <form [formGroup]="noteForm" (ngSubmit)="onSubmit()">
+        <!-- ─────────────── Title ─────────────── -->
+        <div class="mb-3">
+          <label class="form-label" for="title">Title <span class="text-danger">*</span></label>
+
+          <input
+            id="title"
+            type="text"
+            formControlName="title"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': noteForm.get('title')?.invalid && noteForm.get('title')?.touched }" />
+
+          <div class="invalid-feedback" *ngIf="noteForm.get('title')?.invalid && noteForm.get('title')?.touched">
+            Title is required.
+          </div>
+        </div>
+
+        <!-- ─────────────── Content ─────────────── -->
+        <div class="mb-3">
+          <label class="form-label" for="content">Content <span class="text-danger">*</span></label>
+
+          <textarea
+            id="content"
+            rows="5"
+            formControlName="content"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': noteForm.get('content')?.invalid && noteForm.get('content')?.touched }">
+          </textarea>
+
+          <div class="invalid-feedback" *ngIf="noteForm.get('content')?.invalid && noteForm.get('content')?.touched">
+            Content is required.
+          </div>
+        </div>
+
+        <!-- ─────────────── Category ─────────────── -->
+        <div class="mb-3">
+          <label class="form-label" for="category">Category <span class="text-danger">*</span></label>
+
+          <select
+            id="category"
+            formControlName="category"
+            class="form-select"
+            [ngClass]="{ 'is-invalid': noteForm.get('category')?.invalid && noteForm.get('category')?.touched }">
+            <option value="" disabled selected>Select Category</option>
+            <option value="Work">Work</option>
+            <option value="Personal">Personal</option>
+            <option value="Study">Study</option>
+          </select>
+
+          <div class="invalid-feedback" *ngIf="noteForm.get('category')?.invalid && noteForm.get('category')?.touched">
+            Category is required.
+          </div>
+        </div>
+
+        <!-- ─────────────── Priority ─────────────── -->
+        <div class="mb-3">
+          <label class="form-label" for="priority">Priority <span class="text-danger">*</span></label>
+
+          <select
+            id="priority"
+            formControlName="priority"
+            class="form-select"
+            [ngClass]="{ 'is-invalid': noteForm.get('priority')?.invalid && noteForm.get('priority')?.touched }">
+            <option value="" disabled selected>Select Priority</option>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+          </select>
+
+          <div class="invalid-feedback" *ngIf="noteForm.get('priority')?.invalid && noteForm.get('priority')?.touched">
+            Priority is required.
+          </div>
+        </div>
+
+        <!-- ─────────────── Tags ─────────────── -->
+        <div class="mb-3">
+          <label class="form-label" for="tags">
+            Tags (comma‑separated) <span class="text-danger">*</span>
+          </label>
+
+          <input
+            id="tags"
+            type="text"
+            placeholder="e.g., work, urgent"
+            formControlName="tags"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': noteForm.get('tags')?.invalid && noteForm.get('tags')?.touched }" />
+
+          <div class="invalid-feedback" *ngIf="noteForm.get('tags')?.invalid && noteForm.get('tags')?.touched">
+            Tags are required.
+          </div>
+        </div>
+
+        <!-- ─────────────── Buttons ─────────────── -->
+        <div class="d-flex justify-content-between">
+          <button class="btn btn-primary" type="submit" [disabled]="noteForm.invalid">
+            Create Note
+          </button>
+
+          <a routerLink="/notes" class="btn btn-secondary">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

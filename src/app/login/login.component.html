@@ -1,0 +1,46 @@
+<div
+    class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card p-4 shadow" style="max-width: 400px; width: 100%;">
+        <h2 class="card-title text-center mb-4">Login</h2>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input
+                    id="email"
+                    formControlName="email"
+                    type="email"
+                    class="form-control"
+                    [ngClass]="{'is-invalid': loginForm.get('email')?.invalid && loginForm.get('email')?.touched}">
+                <div
+                    *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
+                    class="invalid-feedback">
+                    Valid email is required.
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input
+                    id="password"
+                    formControlName="password"
+                    type="password"
+                    class="form-control"
+                    [ngClass]="{'is-invalid': loginForm.get('password')?.invalid && loginForm.get('password')?.touched}">
+                <div
+                    *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+                    class="invalid-feedback">
+                    Password is required.
+                </div>
+            </div>
+            <button
+                type="submit"
+                [disabled]="loginForm.invalid"
+                class="btn btn-primary w-100">
+                Login
+            </button>
+        </form>
+        <p class="text-center mt-3">
+            Don't have an account? <a routerLink="/register"
+                class="text-primary">Register</a>
+        </p>
+    </div>
+</div>
