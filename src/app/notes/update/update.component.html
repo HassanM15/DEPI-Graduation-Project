@@ -1,4 +1,15 @@
-<div class="container-fluid min-vh-100 py-5 d-flex align-items-center justify-content-center">
+<app-navbar></app-navbar>
+
+<div class="container min-vh-100 py-5 position-relative">
+  <!-- الرسالة المنبثقة عند نجاح التعديل -->
+  <div *ngIf="showPopup" class="custom-popup-backdrop">
+    <div class="custom-popup text-center">
+      ✅ Note updated successfully!
+      <br />
+      <button class="btn btn-m btn-success mt-3" (click)="closePopup()">OK</button>
+    </div>
+  </div>
+
   <div class="card shadow-sm p-4 note-form">
     <h2 class="text-center mb-4">Update Note</h2>
     <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
@@ -8,25 +19,19 @@
       <div class="mb-3">
         <label for="title" class="form-label">Title <span class="text-danger">*</span></label>
         <input type="text" class="form-control" id="title" formControlName="title">
-        <div *ngIf="noteForm.get('title')?.touched && noteForm.get('title')?.invalid" class="text-danger">
-          <div *ngIf="noteForm.get('title')?.errors?.['required']">Title is required</div>
-          <div *ngIf="noteForm.get('title')?.errors?.['minlength']">Title must be at least 3 characters</div>
-        </div>
       </div>
       <div class="mb-3">
         <label for="content" class="form-label">Content <span class="text-danger">*</span></label>
         <textarea class="form-control" id="content" rows="4" formControlName="content"></textarea>
-        <div *ngIf="noteForm.get('content')?.touched && noteForm.get('content')?.invalid" class="text-danger">
-          <div *ngIf="noteForm.get('content')?.errors?.['required']">Content is required</div>
-          <div *ngIf="noteForm.get('content')?.errors?.['minlength']">Content must be at least 10 characters</div>
-        </div>
       </div>
       <div class="mb-3">
-        <label for="category" class="form-label">Category <span class="text-danger">*</span></label>
-        <input type="text" class="form-control" id="category" formControlName="category">
-        <div *ngIf="noteForm.get('category')?.touched && noteForm.get('category')?.invalid" class="text-danger">
-          Category is required
-        </div>
+        <label class="form-label" for="category">Category <span class="text-danger">*</span></label>
+        <select id="category" formControlName="category" class="form-select">
+          <option value="" disabled selected>Select Category</option>
+          <option value="Work">Work</option>
+          <option value="Personal">Personal</option>
+          <option value="Study">Study</option>
+        </select>
       </div>
       <div class="mb-3">
         <label for="priority" class="form-label">Priority <span class="text-danger">*</span></label>
@@ -36,16 +41,10 @@
           <option value="Medium">Medium</option>
           <option value="High">High</option>
         </select>
-        <div *ngIf="noteForm.get('priority')?.touched && noteForm.get('priority')?.invalid" class="text-danger">
-          Priority is required
-        </div>
       </div>
       <div class="mb-3">
         <label for="tags" class="form-label">Tags <span class="text-danger">*</span></label>
         <input type="text" class="form-control" id="tags" formControlName="tags" placeholder="Comma-separated tags">
-        <div *ngIf="noteForm.get('tags')?.touched && noteForm.get('tags')?.invalid" class="text-danger">
-          Tags are required
-        </div>
       </div>
       <div class="d-flex justify-content-between">
         <button type="submit" class="btn btn-primary" [disabled]="noteForm.invalid">Update Note</button>

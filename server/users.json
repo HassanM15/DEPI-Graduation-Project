@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Youssef Mansour Roushdey",
+    "email": "youssef.mansour.roushdey@gmail.com",
+    "password": "$2b$10$QnmFSiTYLysLgvHlcDZqBuyrA/p3bdlEPl2eARLHf.UbS0fDU7Mwu",
+    "phone": "01271889863",
+    "age": 25,
+    "address": "Mina"
+  },
+  {
+    "name": "Youssef Mansour Roushdey Nagy",
+    "email": "youssefmansour142000@gmail.com",
+    "password": "$2b$10$JYMgjyMWCuW7X9kx6wI/6e0J01G0vuzZP6zEUC.3VQrs1/FMc1CYG",
+    "phone": "01271889863",
+    "age": 25,
+    "address": "Deir el bersha Mallawi Minya"
+  }
+]

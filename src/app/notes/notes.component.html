@@ -1,80 +1,58 @@
-<app-navbar></app-navbar>
-
+<app-navbar></app-navbar>  
 <div class="container-fluid min-vh-100 py-5">
-    <header class="text-center mb-5">
-        <h1 class="display-4 text-white fw-bold">Your Notes</h1>
-        <p class="lead text-white">Manage all your notes in one place.</p>
+  <header class="text-center mb-5">
+    <h1 class="display-4 text-white fw-bold">Your Notes</h1>
+    <p class="lead text-white">Manage all your notes in one place.</p>
+    <a routerLink="/notes/create" class="btn btn-primary btn-lg mt-3">
+      Create Note
+    </a>
+  </header>
 
-        <!-- create‑note button -->
-        <a routerLink="/notes/create" class="btn btn-primary btn-lg mt-3">
-            Create Note
-        </a>
-    </header>
+  <section class="container">
+    <div *ngIf="notes$ | async as notes; else emptyState" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      <div *ngFor="let note of notes" class="col">
+        <div class="card h-100 shadow-sm note-card">
+          <div class="card-body">
+            <h5 class="card-title">{{ note.title }}</h5>
+            <p class="card-text">
+              {{ note.content | slice : 0 : 100 }}{{ note.content.length > 100 ? '...' : '' }}
+            </p>
+            <p class="text-muted">Category: {{ note.category }} | Priority: {{ note.priority }}</p>
+            <p class="text-muted">Tags: {{ note.tagsFormatted }}</p>
 
-    <section class="container">
-        <!-- list or empty‑state -->
-        <div
-            *ngIf="notes$ | async as notes; else emptyState"
-            class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-            <!-- one card -->
-            <div *ngFor="let note of notes" class="col">
-                <div class="card h-100 shadow-sm note-card">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ note.title }}</h5>
-
-                        <p class="card-text">
-                            {{ note.content | slice : 0 : 100 }}{{
-                            note.content.length > 100 ? '...' : ''
-                            }}
-                        </p>
-
-                        <p class="text-muted">
-                            Category: {{ note.category }} |
-                            Priority: {{ note.priority }}
-                        </p>
-
-                        <p class="text-muted">Tags: {{ note.tagsFormatted }}</p>
-
-                        <!-- action buttons -->
-                        <div class="d-flex justify-content-between">
-                            <!-- View -->
-                            <a
-                                [routerLink]="['/notes/show', note.id]"
-                                class="btn btn-outline-primary btn-sm">
-                                View
-                            </a>
-
-                            <!-- Edit (points to /notes/edit/:id) -->
-                            <a [routerLink]="['/notes/update', note.id]"
-                                class="btn btn-outline-secondary">Edit</a>
-
-                            <!-- Delete -->
-                            <button
-                                type="button"
-                                class="btn btn-outline-danger btn-sm"
-                                (click)="deleteNote(note.id)">
-                                Delete
-                            </button>
-                        </div>
-                    </div>
-                </div>
+            <div class="d-flex justify-content-between">
+              <a [routerLink]="['/notes/show', note.id]" class="btn btn-outline-primary btn-lg">View</a>
+              <a [routerLink]="['/notes/update', note.id]" class="btn btn-outline-secondary btn-lg">Edit</a>
+              <button type="button" class="btn btn-outline-danger btn-lg" (click)="confirmDelete(note.id)">
+                Delete
+              </button>
             </div>
+          </div>
         </div>
+      </div>
+    </div>
 
-        <!-- empty‑state -->
-        <ng-template #emptyState>
-            <div class="text-center py-5">
-                <h3 class="text-muted mb-3">No Notes Yet</h3>
-                <p class="text-muted mb-4">Start capturing your ideas by
-                    creating a new note!</p>
+    <ng-template #emptyState>
+      <div class="text-center py-5">
+        <h3 class="text-muted mb-3">No Notes Yet</h3>
+        <p class="text-muted mb-4">Start capturing your ideas by creating a new note!</p>
 
-                <a routerLink="/notes/create" class="btn btn-primary btn-lg">
-                    Create Note
-                </a>
-            </div>
-        </ng-template>
-    </section>
+        <a routerLink="/notes/create" class="btn btn-primary btn-lg">Create Note</a>
+      </div>
+    </ng-template>
+  </section>
 
-    <!-- nested routes (show / edit) render here -->
-    <router-outlet></router-outlet>
+  <router-outlet></router-outlet>
+
+  <!-- Custom Delete Modal (No Bootstrap) -->
+  <div class="custom-modal" *ngIf="showDeleteModal">
+    <div class="custom-modal-content">
+      <h5>Confirm Delete</h5>
+      <p>Are you sure you want to delete this note?</p>
+      <div class="d-flex  gap-2 mt-3">
+        <button class="btn btn-secondary" (click)="cancelDelete()">Cancel</button>
+        <button class="btn btn-danger" (click)="deleteNote(deleteNoteId)">Delete</button>
+      </div>
+    </div>
+  </div>
 </div>

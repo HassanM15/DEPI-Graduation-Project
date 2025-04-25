@@ -7,7 +7,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterLink,NavbarComponent],
+  imports: [CommonModule, RouterLink ,NavbarComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })

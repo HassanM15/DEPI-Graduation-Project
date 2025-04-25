@@ -1,4 +1,8 @@
-<div class="container-fluid min-vh-100 py-5 d-flex align-items-center justify-content-center">
+<app-navbar></app-navbar> 
+
+<div>
+<div class="container min-vh-100 py-5">
+
   <div class="card shadow-sm p-4 note-view">
     <h2 class="text-center mb-4">View Note</h2>
 
@@ -21,15 +25,36 @@
     </div>
 
     <div *ngIf="note && !loading && !errorMessage" class="note-content">
-      <h3 class="card-title">{{ note.title }}</h3>
-      <p class="card-text">{{ note.content }}</p>
+      <h3 class="card-title">Title: {{ note.title }}</h3>
+      <p class="card-text">Content: {{ note.content }}</p>
       <p class="text-muted">Category: {{ note.category }}</p>
       <p class="text-muted">Priority: {{ note.priority }}</p>
       <p class="text-muted">Tags: {{ note.tagsFormatted }}</p>
       <p class="text-muted">Created by: {{ note.email }}</p>
       <div class="d-flex justify-content-between mt-4">
         <a routerLink="/notes" class="btn btn-outline-primary">Back to Notes</a>
+        <button (click)="confirmDelete(note.id)" class="btn btn-outline-danger">Delete Note</button>
         <a [routerLink]="['/notes/update', note.id]" class="btn btn-outline-secondary">Edit Note</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div class="modal fade show d-block" *ngIf="showDeleteModal" tabindex="-1" style="background-color: rgba(0,0,0,0.5);">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirm Delete</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="cancelDelete()"></button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete this note?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="cancelDelete()">Cancel</button>
+        <button type="button" class="btn btn-danger" (click)="deleteNote(deleteNoteId)">Delete</button>
       </div>
     </div>
   </div>

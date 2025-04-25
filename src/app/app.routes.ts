@@ -2,7 +2,6 @@ import { Routes } from '@angular/router';
 import { guestGuard } from './notes/guest.guard';
 import { AuthGuard } from './notes/auth.guard';
 
-
 export const routes: Routes = [
   {
     path: 'register',
@@ -27,32 +26,24 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./notes/notes.component').then((m) => m.NotesComponent),
     canActivate: [AuthGuard],
-    children: [
-      {
-        path: 'create',
-        loadComponent: () =>
-          import('./notes/create/create.component').then(
-            (m) => m.CreateComponent
-          ),
-      },
-      {
-        path: 'update/:id',
-        loadComponent: () =>
-          import('./notes/update/update.component').then(
-            (m) => m.UpdateComponent
-          ),
-      },
-      {
-        path: 'show/:id',
-        loadComponent: () =>
-          import('./notes/view/view.component').then((m) => m.ViewComponent),
-      },
-      {
-        path: '',
-        redirectTo: '',
-        pathMatch: 'full',
-      },
-    ],
+  },
+  {
+    path: 'notes/create',
+    loadComponent: () =>
+      import('./notes/create/create.component').then((m) => m.CreateComponent),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'notes/update/:id',
+    loadComponent: () =>
+      import('./notes/update/update.component').then((m) => m.UpdateComponent),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'notes/show/:id',
+    loadComponent: () =>
+      import('./notes/view/view.component').then((m) => m.ViewComponent),
+    canActivate: [AuthGuard],
   },
   {
     path: '',

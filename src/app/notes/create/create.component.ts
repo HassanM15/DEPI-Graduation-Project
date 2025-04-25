@@ -1,20 +1,15 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  ReactiveFormsModule,
-  FormBuilder,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { UseracessService } from '../../useracess.service';
-
+import { NavbarComponent } from '../../navbar/navbar.component';
 
 @Component({
   selector: 'app-create',
-  imports: [CommonModule, ReactiveFormsModule, RouterLink],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, NavbarComponent],
   templateUrl: './create.component.html',
-  styleUrl: './create.component.scss',
+  styleUrls: ['./create.component.scss'],
 })
 export class CreateComponent {
   noteForm: FormGroup;

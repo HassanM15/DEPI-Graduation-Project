@@ -11,8 +11,13 @@
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.btn-primary, .btn-outline-primary, .btn-outline-secondary, .btn-outline-danger {
+.btn-primary,
+.btn-outline-primary,
+.btn-outline-secondary,
+.btn-outline-danger {
   transition: background-color 0.2s;
+  font-size: 1.2rem;
+  padding: 10px 20px;
 }
 
 header {
@@ -28,4 +33,31 @@ header {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.d-flex {
+  gap: 0px;
+}
+
+/* Modal style without Bootstrap */
+.custom-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+}
+
+.custom-modal-content {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
 }
